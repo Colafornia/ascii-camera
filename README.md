@@ -1,5 +1,5 @@
 # ascii-camera
-Take an ascii photo of you via your webcam video stream.
+[A toy project] Take an ascii photo of you via your webcam video stream.
 
 <a href="https://blog.colafornia.me/ascii-camera/index.html" target="_blank">See it in action</a>
 

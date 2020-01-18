@@ -1,22 +1,25 @@
 var ascii = (function () {
+  var container = document.getElementById('ascii');
+  var characters = (' .,:;ox%#@').split('');
+  // contrast correction factor
+  // http://www.dfstudios.co.uk/articles/image-processing-algorithms-part-5/
+  var contrastFactor = (259 * (128 + 255)) / (255 * (259 - 128));
+
   function drawASCIICanvas(canvas) {
     var ctx = canvas.getContext('2d');
-    var container = document.getElementById('ascii')
     var asciiCharacters = '';
-    var characters = (' .,:;ox%#@').split('');
-
-    // contrast correction factor
-    // http://www.dfstudios.co.uk/articles/image-processing-algorithms-part-5/
-    var contrastFactor = (259 * (128 + 255)) / (255 * (259 - 128));
-
-    var imageData = ctx.getImageData(0, 0, 160, 160);
+    // Is a Uint8ClampedArray representing a one-dimensional array containing the data in the RGBA order,
+    // with integer values between 0 and 255
+    var imageData = ctx.getImageData(0, 0, 160, 160).data;
     for (var y = 0; y < 160; y += 2) { // every other row because letters are not square
       for (var x = 0; x < 160; x += 1) {
         // get each pixel's brightness and output corresponding character
-
+        // every 4 items in Uint8ClampedArray representing a pixel
+        // every row contains 160 pixels
+        // so such as pixel at (1,2), it's data in Uint8ClampedArray is:
+        // (1*160 + 2)*4
         var offset = (y * 160 + x) * 4;
-        var color = getColorAtOffset(imageData.data, offset);
-
+        var color = getColorAtOffset(imageData, offset);
         // increase the contrast of the image so that the ASCII representation looks better
         // R' = F(R-128)+128
         // http://www.dfstudios.co.uk/articles/image-processing-algorithms-part-5/
@@ -43,6 +46,7 @@ var ascii = (function () {
   }
 
   function getColorAtOffset(data, offset) {
+    // RGBA in order
     return {
       red: data[offset],
       green: data[offset + 1],
@@ -52,6 +56,7 @@ var ascii = (function () {
   }
 
   function bound(value, interval) {
+    // Make sure that RGBA value ranges in [0 , 255]
     return Math.max(interval[0], Math.min(interval[1], value));
   }
 

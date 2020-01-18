@@ -9,6 +9,8 @@
     switch (type) {
       case 'Start':
         var text = camera.init();
+        // If the browser isn't supported
+        // Set button text to 'Not supported'
         this.innerHTML = text || 'Capture';
         break;
       case 'Capture':
