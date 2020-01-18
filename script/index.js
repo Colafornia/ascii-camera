@@ -8,8 +8,8 @@
     const type = button.innerHTML;
     switch (type) {
       case 'Start':
-        camera.init();
-        this.innerHTML = 'Capture';
+        var text = camera.init();
+        this.innerHTML = text || 'Capture';
         break;
       case 'Capture':
         camera.capture();

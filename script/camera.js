@@ -27,7 +27,8 @@ var camera = (function () {
         })
         .catch(handleError);
     } else {
-      alert('Your browser is not support for navigator.getUserMedia API')
+      alert('Your browser is not supported for navigator.getUserMedia API');
+      return 'Your browser is not supported';
     }
   }
 
