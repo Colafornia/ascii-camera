@@ -3,7 +3,7 @@
 
 <a href="https://blog.colafornia.me/ascii-camera/index.html" target="_blank">See it in action</a>
 
-<img src="https://s2.ax1x.com/2020/01/18/1pNbLt.jpg" width="450">
+<img src="https://s2.ax1x.com/2020/01/19/1947YF.jpg" width="450">
 
 ## Supported browsers
 
